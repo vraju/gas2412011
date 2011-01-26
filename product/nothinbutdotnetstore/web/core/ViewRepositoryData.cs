@@ -14,7 +14,7 @@ namespace nothinbutdotnetstore.web.core
         Catalog repository;
         Renderer renderer;
         Getter getter;
-        ItemType parent;
+        ItemType parent; 
 
         public delegate IEnumerable<ItemType> Getter(ItemType parent);
         public ViewRepositoryData(Catalog repository, Renderer renderer, Getter getter, ItemType parent)
