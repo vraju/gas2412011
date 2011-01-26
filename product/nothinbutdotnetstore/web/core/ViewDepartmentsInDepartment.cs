@@ -11,7 +11,7 @@ namespace nothinbutdotnetstore.web.core
         Renderer renderer;
 
 		public ViewDepartmentsInDepartment()
-			: this(new StubDepartmentRepository(),
+			: this(new StubCatalog(),
             new StubRenderer())
         {
         }
@@ -27,4 +27,6 @@ namespace nothinbutdotnetstore.web.core
 			renderer.display(repository.get_departments_in(request.map<Department>()));
         }
 	}
+
+   
 }
