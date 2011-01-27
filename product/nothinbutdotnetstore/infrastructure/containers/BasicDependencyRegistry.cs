@@ -14,14 +14,8 @@ namespace nothinbutdotnetstore.infrastructure.containers
 
         public DependencyFactory get_the_factory_for(Type dependency)
         {
-            try
-            {
-                return factories[dependency];
-            }
-            catch (KeyNotFoundException ex)
-            {
-                throw new MissingDependencyFactoryException(dependency, ex);
-            }
+            return TryCatcher<DependencyFactory>.execute(() => factories[dependency],
+                                                         e => new MissingDependencyFactoryException(dependency, e));
         }
 
     }

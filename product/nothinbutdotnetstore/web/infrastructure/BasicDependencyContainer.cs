@@ -19,15 +19,9 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public object a(Type dependency)
         {
-			var factory = dependency_registry.get_the_factory_for(dependency);
-			try
-			{
-				return factory.create();
-			}
-			catch (Exception exception)
-			{
-				throw new DependencyCreationException(dependency, exception);
-			}
+            var factory = dependency_registry.get_the_factory_for(dependency);
+            return TryCatcher<object>.execute(() => factory.create(),
+                                                          e => new DependencyCreationException(dependency, e));
 		}
     }
 }
