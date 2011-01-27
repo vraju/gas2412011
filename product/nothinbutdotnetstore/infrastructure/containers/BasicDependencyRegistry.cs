@@ -12,21 +12,17 @@ namespace nothinbutdotnetstore.infrastructure.containers
             this.factories = factories;
         }
 
-        public DependencyFactory get_the_factory_for<DependencyContract>()
+        public DependencyFactory get_the_factory_for(Type dependency)
         {
             try
             {
-                return factories[typeof(DependencyContract)];
+                return factories[dependency];
             }
             catch (KeyNotFoundException ex)
             {
-                throw new MissingDependencyFactoryException(typeof(DependencyContract), ex);
+                throw new MissingDependencyFactoryException(dependency, ex);
             }
         }
 
-        public DependencyFactory get_the_factory_for(Type dependency_type)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

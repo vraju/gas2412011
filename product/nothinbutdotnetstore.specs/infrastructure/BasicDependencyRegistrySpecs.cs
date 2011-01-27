@@ -33,7 +33,7 @@ namespace nothinbutdotnetstore.specs.infrastructure
             };
 
             Because b = () =>
-                result = sut.get_the_factory_for<IFakeDependency>();
+                result = sut.get_the_factory_for(typeof(IFakeDependency));
 
 
             It should_Return_that_contract_factory = () => 
@@ -46,7 +46,7 @@ namespace nothinbutdotnetstore.specs.infrastructure
         public class when_attempting_to_get_a_factory_and_there_is_no_factory : concern
         {
             Because b = () =>
-                catch_exception(() => sut.get_the_factory_for<IFakeDependency>());
+                catch_exception(() => sut.get_the_factory_for(typeof(IFakeDependency)));
 
             It should_throw_a_missing_dependency_factory_exception_with_the_correct_information = () =>
             {
