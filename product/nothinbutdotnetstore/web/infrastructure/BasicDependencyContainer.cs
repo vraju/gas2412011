@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using nothinbutdotnetstore.infrastructure.containers;
 
 namespace nothinbutdotnetstore.web.infrastructure
@@ -11,10 +13,18 @@ namespace nothinbutdotnetstore.web.infrastructure
             this.dependency_registry = dependency_registry;
         }
 
-        public Dependency a<Dependency>()
+        public Dependency a<Dependency>() 
         {
             var factory = dependency_registry.lookup<Dependency>();
-            return (Dependency) factory.create();
+            try
+            {
+                return (Dependency) factory.create();
+             
+            }catch(Exception ex){
+
+                 throw new DependencyCreationException(typeof(Dependency), ex,"object creation failed");
+
+            }
         }
     }
 }
