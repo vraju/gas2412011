@@ -1,8 +1,8 @@
-using System;
 using nothinbutdotnetstore.infrastructure.containers;
+
 namespace nothinbutdotnetstore.web.infrastructure
 {
-    public class BasicDependencyContainer :DependencyContainer
+    public class BasicDependencyContainer : DependencyContainer
     {
         readonly DependencyRegistry dependency_registry;
 
@@ -13,8 +13,8 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public Dependency a<Dependency>()
         {
-            Type type = dependency_registry.lookup<Dependency>();
-            return (Dependency)Activator.CreateInstance(type);
+            var factory = dependency_registry.lookup<Dependency>();
+            return (Dependency) factory.create();
         }
     }
 }

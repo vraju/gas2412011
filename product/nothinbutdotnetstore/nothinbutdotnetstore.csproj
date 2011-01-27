@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="infrastructure\containers\Container.cs" />
     <Compile Include="infrastructure\containers\ContainerResolver.cs" />
+    <Compile Include="infrastructure\containers\DependencyCreationException.cs" />
+    <Compile Include="infrastructure\containers\DependencyFactory.cs" />
     <Compile Include="infrastructure\containers\DependencyRegistry.cs" />
     <Compile Include="infrastructure\containers\DependencyContainer .cs" />
     <Compile Include="MessageGenerator.cs" />
