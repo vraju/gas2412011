@@ -5,7 +5,7 @@ namespace nothinbutdotnetstore.web.infrastructure
 {
     public class BasicDependencyContainer : DependencyContainer
     {
-        readonly DependencyRegistry dependency_registry;
+        DependencyRegistry dependency_registry;
 
         public BasicDependencyContainer(DependencyRegistry dependency_registry)
         {
@@ -14,14 +14,14 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public Dependency a<Dependency>()
         {
-            var factory = dependency_registry.lookup<Dependency>();
+            var factory = dependency_registry.get_the_factory_for<Dependency>();
             try
             {
                 return (Dependency) factory.create();
             }
-            catch(Exception exp)
+            catch (Exception exception)
             {
-                throw new DependencyCreationException(typeof(Dependency),exp);
+                throw new DependencyCreationException(typeof(Dependency), exception);
             }
         }
     }
