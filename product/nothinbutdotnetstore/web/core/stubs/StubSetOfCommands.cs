@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using nothinbutdotnetstore.tasks;
-using nothinbutdotnetstore.tasks.stubs;
+using nothinbutdotnetstore.infrastructure.containers;
 
 namespace nothinbutdotnetstore.web.core.stubs
 {
@@ -10,10 +8,9 @@ namespace nothinbutdotnetstore.web.core.stubs
     {
         public IEnumerator<RequestCommand> GetEnumerator()
         {
-            TemplateRegistry template_registry = new StubTemplateRegistry();
-            Renderer renderer = new DefaultRenderer(template_registry);
-            Catalog repository = new StubCatalog();
-            yield return new DefaultRequestCommand((x) => true, new ViewMainDepartments(repository, renderer));
+            yield return new DefaultRequestCommand((x) => true, 
+               Container.fetch.a<ViewMainDepartments>() 
+                );
         }
 
         IEnumerator IEnumerable.GetEnumerator()
