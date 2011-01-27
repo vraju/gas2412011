@@ -27,8 +27,16 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public object a(Type dependency)
         {
-            throw new NotImplementedException();
-        }
+			var factory = dependency_registry.get_the_factory_for(dependency);
+			try
+			{
+				return factory.create();
+			}
+			catch (Exception exception)
+			{
+				throw new DependencyCreationException(dependency, exception);
+			}
+		}
     }
 }
 
