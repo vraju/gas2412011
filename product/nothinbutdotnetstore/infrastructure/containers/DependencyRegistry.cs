@@ -7,6 +7,6 @@ namespace nothinbutdotnetstore.infrastructure.containers
 {
     public interface DependencyRegistry
     {
-        Type lookup<T>();
+        Factory<T> lookup<T>();
     }
 }
