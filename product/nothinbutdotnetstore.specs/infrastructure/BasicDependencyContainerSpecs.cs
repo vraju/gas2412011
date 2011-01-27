@@ -1,3 +1,4 @@
+ using System.Data;
  using Machine.Specifications;
  using Machine.Specifications.DevelopWithPassion.Rhino;
  using nothinbutdotnetstore.infrastructure.containers;
@@ -49,9 +50,9 @@ namespace nothinbutdotnetstore.specs.infrastructure
             Because b = () =>
                 result = sut.a<IDummy>();
 
-            
-            It should_have_dependency = () =>
-                result.ShouldBeAn<FailDummy>();
+
+            It should_create_the_dependency_using_a_rich_constructor = () =>
+                result.ShouldBeAn<FailDummy>().connection.ShouldNotBeNull();
 
             static IDummy result;
             static FailDummy expected;
@@ -73,10 +74,10 @@ namespace nothinbutdotnetstore.specs.infrastructure
 
     public class FailDummy : IDummy
     {
-        
-        public FailDummy(int i)
+        public IDbConnection connection { get; set; }
+        public FailDummy(IDbConnection connection)
         {
-            
+           this.connection = connection; 
         }
 
     }
