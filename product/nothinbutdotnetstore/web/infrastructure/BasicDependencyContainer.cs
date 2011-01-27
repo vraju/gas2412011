@@ -1,3 +1,4 @@
+using System;
 using nothinbutdotnetstore.infrastructure.containers;
 
 namespace nothinbutdotnetstore.web.infrastructure
@@ -14,7 +15,14 @@ namespace nothinbutdotnetstore.web.infrastructure
         public Dependency a<Dependency>()
         {
             var factory = dependency_registry.lookup<Dependency>();
-            return (Dependency) factory.create();
+            try
+            {
+                return (Dependency) factory.create();
+            }
+            catch(Exception exp)
+            {
+                throw new DependencyCreationException(typeof(Dependency),exp);
+            }
         }
     }
 }
