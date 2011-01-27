@@ -20,7 +20,7 @@ namespace nothinbutdotnetstore.web.infrastructure
         public object a(Type dependency)
         {
             var factory = dependency_registry.get_the_factory_for(dependency);
-            return TryCatcher<object>.execute(() => factory.create(),
+            return Execute<object>.run(() => factory.create(),
                                                           e => new DependencyCreationException(dependency, e));
 		}
     }

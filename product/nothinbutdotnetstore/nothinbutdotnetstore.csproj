@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="infrastructure\containers\BasicDependencyRegistry.cs" />
-    <Compile Include="infrastructure\containers\TryCatcher.cs" />
+    <Compile Include="infrastructure\containers\Execute.cs" />
     <Compile Include="infrastructure\containers\Container.cs" />
     <Compile Include="infrastructure\containers\ContainerResolver.cs" />
     <Compile Include="infrastructure\containers\DependencyCreationException.cs" />
