@@ -23,7 +23,7 @@ namespace nothinbutdotnetstore.specs.infrastructure
             {
                 dependency_registry = the_dependency<DependencyRegistry>();
                 factory = an<DependencyFactory>();
-                dependency_registry.Stub(x => x.lookup<IDummy>()).Return(factory);
+                dependency_registry.Stub(x => x.get_the_factory_for<IDummy>()).Return(factory);
                 dependency = new Dummy();
                 factory.Stub(x => x.create()).Return(dependency);
 
@@ -49,7 +49,7 @@ namespace nothinbutdotnetstore.specs.infrastructure
                 dependency_registry = the_dependency<DependencyRegistry>();
                 an_exception = new Exception();
                 factory = an<DependencyFactory>();
-                dependency_registry.Stub(x => x.lookup<IDummy>()).Return(factory);
+                dependency_registry.Stub(x => x.get_the_factory_for<IDummy>()).Return(factory);
                 factory.Stub(x => x.create()).Throw(an_exception);
 
             };

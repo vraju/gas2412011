@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="infrastructure\BasicDependencyContainerSpecs.cs" />
+    <Compile Include="infrastructure\BasicDependencyRegistrySpecs.cs" />
     <Compile Include="infrastructure\ContainerSpecs.cs" />
     <Compile Include="MessageGeneratorSpecs.cs" />
     <Compile Include="utility\BaseConcern.cs" />

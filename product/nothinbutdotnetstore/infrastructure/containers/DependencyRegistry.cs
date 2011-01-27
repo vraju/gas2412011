@@ -2,6 +2,6 @@
 {
     public interface DependencyRegistry
     {
-        DependencyFactory lookup<DependencyContract>();
+        DependencyFactory get_the_factory_for<DependencyContract>();
     }
 }
