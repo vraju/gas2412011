@@ -1,5 +1,5 @@
 using System.Web;
-using nothinbutdotnetstore.web.core.stubs;
+using nothinbutdotnetstore.infrastructure.containers;
 
 namespace nothinbutdotnetstore.web.core
 {
@@ -8,8 +8,8 @@ namespace nothinbutdotnetstore.web.core
         FrontController controller;
         RequestFactory factory;
 
-        public RawHandler():this(new DefaultFrontController(),
-            new StubRequestFactory())
+        public RawHandler():this(Container.fetch.a<FrontController>(),
+            Container.fetch.a<RequestFactory>())
         {
         }
 

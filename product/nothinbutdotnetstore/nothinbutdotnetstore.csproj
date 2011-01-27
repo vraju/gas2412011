@@ -49,26 +49,36 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="infrastructure\containers\Container.cs" />
+    <Compile Include="infrastructure\containers\ContainerResolver.cs" />
+    <Compile Include="infrastructure\containers\DependencyRegistry.cs" />
+    <Compile Include="infrastructure\containers\DependencyContainer .cs" />
     <Compile Include="MessageGenerator.cs" />
     <Compile Include="tasks\Catalog.cs" />
     <Compile Include="tasks\StoreCatalogController.cs" />
     <Compile Include="tasks\stubs\StubCatalog.cs" />
     <Compile Include="web\application\catalogbrowsing\Blah.cs" />
     <Compile Include="web\core\ApplicationCommand .cs" />
+    <Compile Include="web\core\RequestContainsCommand.cs" />
+    <Compile Include="web\core\DefaultModelAwareHandlerFactory.cs" />
     <Compile Include="web\core\DefaultRenderer.cs" />
     <Compile Include="web\core\GetTheCurrentContext.cs" />
     <Compile Include="web\core\GetTheMainDepartments.cs" />
     <Compile Include="web\core\GetTheReportModel.cs" />
+    <Compile Include="web\core\IncomingRequestMatcher.cs" />
+    <Compile Include="web\core\LinkCommand.cs" />
     <Compile Include="web\core\ModelAwareHandler.cs" />
     <Compile Include="web\core\ModelAwareHandlerFactory.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
+    <Compile Include="web\core\PathMapper.cs" />
     <Compile Include="web\core\SimpleReportModelHandler.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="web\core\StubPathMapper.cs" />
     <Compile Include="web\core\stubs\GetTheProductsInADepartment.cs" />
+    <Compile Include="web\core\stubs\IncomingRequest.cs" />
     <Compile Include="web\core\stubs\StubTemplateRegistry.cs" />
     <Compile Include="web\core\Template.cs" />
-    <Compile Include="web\core\TemplateFactory.cs" />
     <Compile Include="web\core\TemplateRegistry.cs" />
     <Compile Include="web\core\ViewProductsInDepartment.cs" />
     <Compile Include="web\core\DefaultCommandRegistry.cs" />
@@ -88,6 +98,7 @@
     <Compile Include="web\core\ViewMainDepartments.cs" />
     <Compile Include="web\core\ViewDepartmentsInDepartment.cs" />
     <Compile Include="web\core\WebFormTemplate.cs" />
+    <Compile Include="web\infrastructure\BasicDependencyContainer.cs" />
     <Compile Include="web\model\Department.cs" />
     <Compile Include="web\model\Product.cs" />
   </ItemGroup>

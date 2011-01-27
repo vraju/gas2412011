@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using nothinbutdotnetstore.web.model;
 
 namespace nothinbutdotnetstore.web.core.stubs
 {
@@ -8,10 +8,7 @@ namespace nothinbutdotnetstore.web.core.stubs
     {
         public IEnumerator<RequestCommand> GetEnumerator()
         {
-            yield return new DefaultRequestCommand(x => true, 
-            new ViewMainDepartments());
-
-
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
