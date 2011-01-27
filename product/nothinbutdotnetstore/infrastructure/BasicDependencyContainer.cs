@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using nothinbutdotnetstore.infrastructure.containers;
 
-namespace nothinbutdotnetstore.web.infrastructure
+namespace nothinbutdotnetstore.infrastructure
 {
     public class BasicDependencyContainer : DependencyContainer
     {

@@ -49,6 +49,8 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="infrastructure\BasicDependencyContainer.cs" />
+    <Compile Include="infrastructure\containers\BasicDependencyFactory.cs" />
     <Compile Include="infrastructure\containers\BasicDependencyRegistry.cs" />
     <Compile Include="infrastructure\containers\Execute.cs" />
     <Compile Include="infrastructure\containers\Container.cs" />
@@ -58,8 +60,10 @@
     <Compile Include="infrastructure\containers\DependencyRegistry.cs" />
     <Compile Include="infrastructure\containers\DependencyContainer .cs" />
     <Compile Include="infrastructure\containers\MissingDependencyFactoryException.cs" />
+    <Compile Include="infrastructure\documentation\RegistryAttribute.cs" />
     <Compile Include="MessageGenerator.cs" />
     <Compile Include="tasks\Catalog.cs" />
+    <Compile Include="tasks\startup\Startup.cs" />
     <Compile Include="tasks\StoreCatalogController.cs" />
     <Compile Include="tasks\stubs\StubCatalog.cs" />
     <Compile Include="web\application\catalogbrowsing\Blah.cs" />
@@ -103,11 +107,12 @@
     <Compile Include="web\core\ViewMainDepartments.cs" />
     <Compile Include="web\core\ViewDepartmentsInDepartment.cs" />
     <Compile Include="web\core\WebFormTemplate.cs" />
-    <Compile Include="web\infrastructure\BasicDependencyContainer.cs" />
     <Compile Include="web\model\Department.cs" />
     <Compile Include="web\model\Product.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="web\infrastructure\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

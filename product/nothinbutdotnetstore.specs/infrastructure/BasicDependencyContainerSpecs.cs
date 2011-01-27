@@ -2,8 +2,8 @@ using System;
 using System.Data;
 using Machine.Specifications;
 using Machine.Specifications.DevelopWithPassion.Rhino;
+using nothinbutdotnetstore.infrastructure;
 using nothinbutdotnetstore.infrastructure.containers;
-using nothinbutdotnetstore.web.infrastructure;
 using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.specs.infrastructure

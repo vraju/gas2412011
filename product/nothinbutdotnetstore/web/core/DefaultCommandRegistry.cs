@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using nothinbutdotnetstore.infrastructure.documentation;
 
 namespace nothinbutdotnetstore.web.core
 {
+    [Registry]
     public class DefaultCommandRegistry : CommandRegistry
     {
         IEnumerable<RequestCommand> all_commands;
