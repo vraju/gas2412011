@@ -24,6 +24,11 @@ namespace nothinbutdotnetstore.web.infrastructure
                 throw new DependencyCreationException(typeof(Dependency), exception);
             }
         }
+
+        public object a(Type dependency)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

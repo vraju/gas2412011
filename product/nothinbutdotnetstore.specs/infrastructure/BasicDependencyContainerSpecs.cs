@@ -42,6 +42,31 @@ namespace nothinbutdotnetstore.specs.infrastructure
             static DependencyFactory factory;
         }
 
+        public class when_fetching_a_dependency_non_generically : concern
+        {
+            Establish e = () =>
+            {
+                dependency_registry = the_dependency<DependencyRegistry>();
+                factory = an<DependencyFactory>();
+                dependency_registry.Stub(x => x.get_the_factory_for(typeof(IDummy))).Return(factory);
+                dependency = new Dummy();
+                factory.Stub(x => x.create()).Return(dependency);
+
+            };
+
+            Because b = () =>
+                result = sut.a(typeof(IDummy));
+                
+
+            It should_return_the_dependency_created_by_the_factory = () =>
+                result.ShouldEqual(dependency);
+
+            static object result;
+            static IDummy expected;
+            static DependencyRegistry dependency_registry;
+            static IDummy dependency;
+            static DependencyFactory factory;
+        }
         public class when_the_factory_for_a_dependency_throws_an_exception : concern
         {
             Establish e = () =>

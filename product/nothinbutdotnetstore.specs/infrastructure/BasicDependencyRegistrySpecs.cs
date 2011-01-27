@@ -36,7 +36,8 @@ namespace nothinbutdotnetstore.specs.infrastructure
                 result = sut.get_the_factory_for<IFakeDependency>();
 
 
-            It should_Return_that_contract_factory = () => { result.ShouldEqual(expected_factory); };
+            It should_Return_that_contract_factory = () => 
+                result.ShouldEqual(expected_factory);
 
             static DependencyFactory result;
             static DependencyFactory expected_factory;
