@@ -35,6 +35,28 @@ namespace nothinbutdotnetstore.specs.infrastructure
             static IDummy result,expected;
             static DependencyRegistry dependency_registry;
         }
+
+
+        [Subject(typeof(BasicDependencyContainer))]
+        public class when_fetch_a_dependency_with_parameter : concern
+        {
+            Establish e = () =>
+            {
+                dependency_registry = the_dependency<DependencyRegistry>();
+                dependency_registry.Stub(x => x.lookup<IDummy>()).Return(typeof(FailDummy));
+            };
+
+            Because b = () =>
+                result = sut.a<IDummy>();
+
+            
+            It should_have_dependency = () =>
+                result.ShouldBeAn<FailDummy>();
+
+            static IDummy result;
+            static FailDummy expected;
+            static DependencyRegistry dependency_registry;
+        }
         
     }
 
@@ -45,7 +67,17 @@ namespace nothinbutdotnetstore.specs.infrastructure
 
     public class Dummy:IDummy
     {
-    
+          
+
+    }
+
+    public class FailDummy : IDummy
+    {
+        
+        public FailDummy(int i)
+        {
+            
+        }
 
     }
 }
