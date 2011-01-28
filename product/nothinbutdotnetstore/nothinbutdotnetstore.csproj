@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="infrastructure\BasicDependencyContainer.cs" />
+    <Compile Include="infrastructure\containers\AutomaticDependencyFactory.cs" />
     <Compile Include="infrastructure\containers\BasicDependencyFactory.cs" />
     <Compile Include="infrastructure\containers\BasicDependencyRegistry.cs" />
     <Compile Include="infrastructure\containers\Execute.cs" />
