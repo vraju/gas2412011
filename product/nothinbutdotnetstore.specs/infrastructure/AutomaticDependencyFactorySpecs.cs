@@ -60,11 +60,13 @@ namespace nothinbutdotnetstore.specs.infrastructure
                 container = the_dependency<DependencyContainer>();
                 the_sql_connection = new SqlConnection();
                 the_command = new SqlCommand();
+                name = "venkat";
                 the_other_dependency = new OtherDependency();
 
                 container.Stub(x => x.a(typeof(IDbConnection))).Return(the_sql_connection);
                 container.Stub(x => x.a(typeof(IDbCommand))).Return(the_command);
                 container.Stub(x => x.a(typeof(OtherDependency))).Return(the_other_dependency);
+                container.Stub(x => x.a(typeof(string))).Return(name);
 
                 provide_a_basic_sut_constructor_argument(typeof(ComponentWithLotsOfDependencies));
             };
@@ -75,9 +77,9 @@ namespace nothinbutdotnetstore.specs.infrastructure
             It should_create_the_dependency_with_all_of_its_dependencies_provided_with_the_selected_params = () =>
             {
                 var item = result.ShouldBeAn<ComponentWithLotsOfDependencies>();
-                item.connection.ShouldEqual(the_sql_connection);
-                item.command.ShouldBeNull();
-                item.other.ShouldBeNull();
+                item.connection.ShouldBeNull();
+                item.val.ShouldNotBeNull();
+                
 
             };
 
@@ -86,6 +88,7 @@ namespace nothinbutdotnetstore.specs.infrastructure
             static IDbCommand the_command;
             static OtherDependency the_other_dependency;
             static DependencyContainer container;
+            static string name;
         }
     }
 
@@ -97,6 +100,8 @@ namespace nothinbutdotnetstore.specs.infrastructure
 
         public IDbCommand command { get; set; }
 
+        public string val { get; set; }
+
         public ComponentWithLotsOfDependencies(OtherDependency other, IDbConnection connection, IDbCommand command)
         {
             this.other = other;
@@ -104,10 +109,10 @@ namespace nothinbutdotnetstore.specs.infrastructure
             this.command = command;
         }
 
-        public ComponentWithLotsOfDependencies(IDbConnection connection)
+        public ComponentWithLotsOfDependencies(string val)
         {
             
-            this.connection = connection;
+            this.val = val;
             
         }
 
