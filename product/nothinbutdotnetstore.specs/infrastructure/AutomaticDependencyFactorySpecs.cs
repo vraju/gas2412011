@@ -52,6 +52,41 @@ namespace nothinbutdotnetstore.specs.infrastructure
             static OtherDependency the_other_dependency;
             static DependencyContainer container;
         }
+
+        public class when_creating_a_dependency_new : concern
+        {
+            Establish c = () =>
+            {
+                container = the_dependency<DependencyContainer>();
+                the_sql_connection = new SqlConnection();
+                the_command = new SqlCommand();
+                the_other_dependency = new OtherDependency();
+
+                container.Stub(x => x.a(typeof(IDbConnection))).Return(the_sql_connection);
+                container.Stub(x => x.a(typeof(IDbCommand))).Return(the_command);
+                container.Stub(x => x.a(typeof(OtherDependency))).Return(the_other_dependency);
+
+                provide_a_basic_sut_constructor_argument(typeof(ComponentWithLotsOfDependencies));
+            };
+
+            Because b = () =>
+                result = sut.create();
+
+            It should_create_the_dependency_with_all_of_its_dependencies_provided_with_the_selected_params = () =>
+            {
+                var item = result.ShouldBeAn<ComponentWithLotsOfDependencies>();
+                item.connection.ShouldEqual(the_sql_connection);
+                item.command.ShouldBeNull();
+                item.other.ShouldBeNull();
+
+            };
+
+            static object result;
+            static SqlConnection the_sql_connection;
+            static IDbCommand the_command;
+            static OtherDependency the_other_dependency;
+            static DependencyContainer container;
+        }
     }
 
     class ComponentWithLotsOfDependencies
@@ -68,6 +103,14 @@ namespace nothinbutdotnetstore.specs.infrastructure
             this.connection = connection;
             this.command = command;
         }
+
+        public ComponentWithLotsOfDependencies(IDbConnection connection)
+        {
+            
+            this.connection = connection;
+            
+        }
+
     }
 
     class OtherDependency
