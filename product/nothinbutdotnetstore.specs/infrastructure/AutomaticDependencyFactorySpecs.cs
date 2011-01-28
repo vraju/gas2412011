@@ -63,9 +63,7 @@ namespace nothinbutdotnetstore.specs.infrastructure
                 name = "venkat";
                 the_other_dependency = new OtherDependency();
 
-                container.Stub(x => x.a(typeof(IDbConnection))).Return(the_sql_connection);
-                container.Stub(x => x.a(typeof(IDbCommand))).Return(the_command);
-                container.Stub(x => x.a(typeof(OtherDependency))).Return(the_other_dependency);
+                
                 container.Stub(x => x.a(typeof(string))).Return(name);
 
                 provide_a_basic_sut_constructor_argument(typeof(ComponentWithLotsOfDependencies));
