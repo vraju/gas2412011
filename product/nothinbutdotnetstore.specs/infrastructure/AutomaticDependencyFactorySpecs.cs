@@ -1,6 +1,7 @@
  using System;
  using System.Data;
  using System.Data.SqlClient;
+ using System.Linq;
  using Machine.Specifications;
  using Machine.Specifications.DevelopWithPassion.Rhino;
  using nothinbutdotnetstore.infrastructure.containers;

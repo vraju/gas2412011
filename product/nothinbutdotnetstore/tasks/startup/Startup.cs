@@ -22,37 +22,39 @@ namespace nothinbutdotnetstore.tasks.startup
 
         static void configure_core_components()
         {
-            Container.facade_resolver = () => new BasicDependencyContainer(new BasicDependencyRegistry(all_factories));
+            var container = new BasicDependencyContainer(new BasicDependencyRegistry(all_factories));
+            Container.facade_resolver = () => container;
+            add_dependency_instance<DependencyContainer>(container);
         }
 
         static void configure_application_commands()
         {
-            add_factory<ViewMainDepartments>(() => new ViewMainDepartments(Container.fetch.a<Catalog>(), 
-                Container.fetch.a<Renderer>()));
+            add_factory<ViewMainDepartments, ViewMainDepartments>();
         }
 
         static void configure_service_layer()
         {
-            add_factory<Catalog>(() => new StubCatalog());
+            add_factory<Catalog, StubCatalog>();
         }
 
         static void configure_front_controller()
         {
-            var template_registry = new StubTemplateRegistry();
-            var renderer = new DefaultRenderer(template_registry);
-
-            var default_command_registry = new DefaultCommandRegistry(new StubSetOfCommands());
-
-            add_factory<FrontController>(() => new DefaultFrontController(default_command_registry));
-            add_factory<RequestFactory>(() => new StubRequestFactory());
-            add_factory<CommandRegistry>(() => default_command_registry);
-            add_factory<TemplateRegistry>(() => template_registry);
-            add_factory<Renderer>(() => renderer);
+            add_factory<FrontController, DefaultFrontController>();
+            add_factory<IEnumerable<RequestCommand>,StubSetOfCommands>();
+            add_factory<RequestFactory, StubRequestFactory>();
+            add_factory<CommandRegistry, DefaultCommandRegistry>();
+            add_factory<TemplateRegistry, StubTemplateRegistry>();
+            add_factory<Renderer,DefaultRenderer>();
         }
 
-        private static void add_factory<TKey>(Func<object> instance)
+        private static void add_dependency_instance<Contract>(Contract instance)
 		{
-			all_factories.Add(typeof(TKey), new BasicDependencyFactory(() => instance()));
+            all_factories.Add(typeof(Contract), new BasicDependencyFactory(() => instance));
+		}
+
+        private static void add_factory<Contract,Implementation>()
+		{
+            all_factories.Add(typeof(Contract), new AutomaticDependencyFactory(Container.fetch.a<DependencyContainer>(), typeof(Implementation)));
 		}
 
     }
