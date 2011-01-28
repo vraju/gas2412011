@@ -53,7 +53,7 @@ namespace nothinbutdotnetstore.specs.infrastructure
             static DependencyContainer container;
         }
 
-        public class when_creating_a_dependency_new : concern
+        public class when_creating_a_dependency_with_selected_constructor_creation : concern
         {
             Establish c = () =>
             {
